@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/>
+          <script src="Scripts/knockout-3.4.2.js"></script>
+          <script src="Scripts/jquery-3.3.1.min.js"></script>
+           <script src="CustomScripts/HTTPCommunication.js"></script>
+           <script src="CustomScripts/WeatherClientJS.js"></script>
+    </head>
+    <body>
+        <div class="container">
+                <div class="row">
+                        <div class="col-md-2 col-lg-4"></div>
+                        <div class="col-md-7 col-lg-3">
+                                <H1 style="color:rebeccapurple">Weather Client</H1>
+                        </div>
+                       
+                </div>
+                <hr>
+                <div class="row">
+                        <div class="col-md-4 col-lg-3"></div>
+                        <div class="col-md-5 col-lg-3">
+                            <label for="input-sm">Countries</label>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <select id="idCountries" class="form-control input-sm">
+                            </select>
+                        </div>
+                </div>
+                <br>
+                <div class="row">
+                        <div class="col-md-4 col-lg-3"></div>
+                        <div class="col-md-5 col-lg-3">
+                            <label for="input-sm">Cities</label>
+                        </div>
+                        <div class="col-md-5 col-lg-3">
+                            <select id="idCities" class="form-control input-sm">
+                            </select>
+                        </div>
+                </div>
+                <hr>
+                <br>
+                <div class="row">
+                        <div class="col-md-1 col-lg-1"></div>
+                        <div class="col-md-2 col-lg-1">
+                            <label for="input-sm">Location</label>
+                        </div>
+                        <div class="col-md-4 col-lg-3">
+                            <input type="text" id="idLocation" class="form-control input-sm" readonly=true/>
+                        </div>
+
+                        <div class="col-md-1 col-lg-1"></div>
+                        <div class="col-md-2 col-lg-1">
+                            <label for="input-sm">Visiblity</label>
+                        </div>
+                        <div class="col-md-4 col-lg-1">
+                            <input type="text" id="idVisibility" class="form-control input-sm" readonly=true/>
+                        </div>
+                </div>
+                <br>
+                <div class="row">
+
+                        <div class="col-md-1 col-lg-1"></div>
+                        <div class="col-md-2 col-lg-1">
+                            <label for="input-sm">Tempreature</label>
+                        </div>
+                        <div class="col-md-4 col-lg-1">
+                            <input type="text" id="idTemperature" class="form-control input-sm" readonly=true/>
+                        </div>
+
+                        <div class="col-md-5 col-lg-3"></div>
+                        <div class="col-md-6 col-lg-1">
+                            <label for="input-sm">Sky Condition</label>
+                        </div>
+                        <div class="col-md-7 col-lg-3">
+                            <input type="text" id="idSkyCondition" class="form-control input-sm" readonly=true/>
+                        </div>
+                </div>
+
+                <br>
+                <div class="row">
+                        <div class="col-md-1 col-lg-1"></div>
+                        <div class="col-md-2 col-lg-1">
+                            <label for="input-sm">Relative Humidity</label>
+                        </div>
+                        <div class="col-md-4 col-lg-1">
+                            <input type="text" id="idRHumidity" class="form-control input-sm" readonly=true/>
+                        </div>
+
+                        <div class="col-md-5 col-lg-3"></div>
+                        <div class="col-md-6 col-lg-1">
+                            <label for="input-sm">Dew Point</label>
+                        </div>
+                        <div class="col-md-7 col-lg-3">
+                            <input type="text" id="idDewPoint" class="form-control input-sm" readonly=true/>
+                        </div>
+                        
+                </div>
+
+                <br>
+                <div class="row">
+
+                        <div class="col-md-1 col-lg-1"></div>
+                        <div class="col-md-2 col-lg-1">
+                            <label for="input-sm">Preasure</label>
+                        </div>
+                        <div class="col-md-4 col-lg-1">
+                            <input type="text" id="idPreasure" class="form-control input-sm" readonly=true/>
+                        </div>
+                </div>
+          </div>
+    </body>
+</HTML>

@@ -1,0 +1,99 @@
+
+$(document).ready(function() {  
+    $("#idCountries").change(function() {
+        WDataModel.FetchDataFromServer(2,this.value);
+    });
+    $("#idCities").change(function() {
+        WDataModel.FetchDataFromServer(3,this.value);
+    });
+    WDataModel.FetchDataFromServer(1,0);
+    WDataModel.FetchDataFromServer(2,1);
+});
+
+
+var WeatherDataViewModel = function (con) 
+{
+    var self = this;
+    self.Connection = con;
+
+    self.UpdateTempreatureData = function(data)
+    {
+        if(data != null)
+        {
+            $("#idLocation").val(data.Location);
+            $("#idVisibility").val(data.Visibility == 1?"Visible":"Not Visible");
+            $("#idSkyCondition").val(data.SkyCondition);
+            $("#idTemperature").val(data.Temperature+" C");
+            $("#idDewPoint").val(data.DewPoint);
+            $("#idRHumidity").val(data.RelativeHumidity);
+            $("#idPreasure").val(data.Preasure);
+        }
+    }
+
+    self.FetchDataFromServer = function(Operation, Param)
+    {
+        var data;
+        var serverURL = "http://localhost:14366";
+        switch(Operation)
+        {
+            case 1:
+                self.Connection.Get(serverURL+"/GetCountries",WDataModel.CountryList_Success,
+                WDataModel.CountryList_Failure,data,false,1);
+                break;
+            case 2:
+                self.Connection.Get(serverURL+"/GetCitiesByCountryID/"+Param,WDataModel.CityList_Success,
+                WDataModel.CityList_Failure,data,false,1);
+                break;
+            case 3:
+                self.Connection.Get(serverURL+"/GetTemperatureDataByCity/"+Param,WDataModel.Temperature_Success,
+                WDataModel.Temperature_Failure,data,false,2);
+                break;
+        }
+    }
+
+    self.CountryList_Success = function(result)
+    {
+        var list = $("#idCountries");
+        $.each(result, function(index, item) 
+        {
+            list.append(new Option(item.Name, item.ID));
+        });
+    }
+
+    self.CountryList_Failure = function(Error)
+    {
+        alert("Failed"+Error);
+    }
+
+    self.CityList_Success = function(result)
+    {
+        $("#idCities").empty();
+        var list = $("#idCities");
+        $.each(result, function(index, item) 
+        {
+            list.append(new Option(item.Name, item.ID));
+        });
+        if($('#idCities > option').length > 0)
+        {
+            var selectedIndex=$('#idCities').children("option:selected").val();
+            WDataModel.FetchDataFromServer(3,selectedIndex);
+        }
+    }
+
+    self.CityList_Failure = function(Error)
+    {
+        alert("City Failure"+Error);
+    }
+   
+    self.Temperature_Success = function(result)
+    {
+        self.UpdateTempreatureData(result);
+    }
+    self.Temperature_Failure = function(error)
+    {
+
+    }
+}
+
+var Connection = new HTTPCommunication();
+var WDataModel = new WeatherDataViewModel(Connection); 

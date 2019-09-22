@@ -1,0 +1,33 @@
+var HTTPCommunication =function()
+{
+    self = this;
+
+    self.Get = function(url, successCallBack, failureCallBack, data, isCache)
+    {
+        data = data || "";
+        isCache = isCache || true;
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            data: data,
+            crossDomain: true,
+            contentType: "application/json;charset=utf-8",
+            success: function (result) {
+                if (successCallBack != null)
+                    successCallBack(result);
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (failureCallBack != null)
+                    alert(textStatus);
+                    alert (errorThrown);
+                    failureCallBack(jqXHR, textStatus, errorThrown);
+            },
+            async: false,
+            type: "GET",
+            cache: false
+        });
+    }
+
+}
+
