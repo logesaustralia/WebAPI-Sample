@@ -9,6 +9,7 @@ namespace WeatherWebAPIService.DAL
 {
     public class WeatherRepository : IWeatherRepository
     {
+        //Modified by Logu
         //[Dependency]
         private WeatherDBEntities _dbContext = null;
 
